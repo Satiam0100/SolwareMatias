@@ -107,7 +107,7 @@ function App() {
 				<WhatsAppButton />
 				<ButtonMessageBot />
 			</div>
-			<Analytics />
+			<Analytics debug={false} />
 		</>
 	)
 }

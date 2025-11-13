@@ -605,7 +605,41 @@ const Contact: React.FC = () => {
 										id="phone"
 										name="phone"
 										value={formData.phone}
-										onChange={handleChange}
+										onChange={(e) => {
+											// Solo permitir números en el onChange
+											const value = e.target.value.replace(/\D/g, '')
+											setFormData(prev => ({ ...prev, phone: value }))
+											// Clear error when user starts typing
+											if (formErrors.phone) {
+												setFormErrors((prev) => ({ ...prev, phone: undefined }))
+											}
+										}}
+										onKeyDown={(e) => {
+											// Permitir: backspace, delete, tab, escape, enter, flechas
+											if ([8, 9, 27, 13, 46].includes(e.keyCode) ||
+												// Permitir: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+												(e.keyCode === 65 && e.ctrlKey === true) ||
+												(e.keyCode === 67 && e.ctrlKey === true) ||
+												(e.keyCode === 86 && e.ctrlKey === true) ||
+												(e.keyCode === 88 && e.ctrlKey === true) ||
+												// Permitir: home, end, left, right
+												(e.keyCode >= 35 && e.keyCode <= 39)) {
+												return
+											}
+											// Bloquear si no es un número (0-9)
+											if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+												e.preventDefault()
+											}
+										}}
+										onPaste={(e) => {
+											// Limpiar cualquier caracter no numérico al pegar
+											e.preventDefault()
+											const pastedText = e.clipboardData.getData('text')
+											const cleanedText = pastedText.replace(/\D/g, '')
+											const newValue = formData.phone + cleanedText
+											const maxLength = countryCodes.find(c => c.code === formData.countryCode)?.maxLength || 15
+											setFormData(prev => ({ ...prev, phone: newValue.slice(0, maxLength) }))
+										}}
 										placeholder={countryCodes.find(c => c.code === formData.countryCode)?.placeholder || t('contact.form.phone.placeholder')}
 										maxLength={countryCodes.find(c => c.code === formData.countryCode)?.maxLength || 15}
 										className={`flex-1 block w-full rounded-md border px-3 py-2 text-gray-900 dark:text-white 

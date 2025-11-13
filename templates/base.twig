@@ -122,9 +122,13 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js').then(registration => {
+                    {% if app.environment != 'prod' %}
                     console.log('SW registered:', registration);
+                    {% endif %}
                 }).catch(error => {
+                    {% if app.environment != 'prod' %}
                     console.log('SW registration failed:', error);
+                    {% endif %}
                 });
             });
         }

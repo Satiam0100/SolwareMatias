@@ -1,7 +1,7 @@
-import { Lightbulb, Target, Rocket } from 'lucide-react'
+import { Lightbulb, Target, Rocket, Volume2, VolumeX } from 'lucide-react'
 import BlurText from './effectsComponents/BlurText'
 import { useTranslation } from 'react-i18next'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 
 const AboutUs = () => {
@@ -9,6 +9,66 @@ const AboutUs = () => {
 	const [autoHoverIndex, setAutoHoverIndex] = useState(-1)
 	const [isManualHover, setIsManualHover] = useState(false)
 	const [manualHoverIndex, setManualHoverIndex] = useState(-1)
+	// Video audio control
+	const [isMuted, setIsMuted] = useState(true)
+	const videoRef = useRef<HTMLVideoElement | null>(null)
+
+	// Hint shown when user first scrolls to video (resets on page reload)
+	const [showSoundHint, setShowSoundHint] = useState(false)
+	const hintTimeoutRef = useRef<number | null>(null)
+	const hasClickedMuteThisLoad = useRef(false)
+
+	useEffect(() => {
+		// If user already clicked mute this session, don't show hint
+		if (hasClickedMuteThisLoad.current) return
+
+		const observerTarget = document.querySelector('#quienes-somos')
+		if (!observerTarget) return
+
+		const showHint = () => {
+			setShowSoundHint(true)
+			// hide after 5 seconds (store timeout id so we can clear it if user mutes earlier)
+			hintTimeoutRef.current = window.setTimeout(() => {
+				setShowSoundHint(false)
+				hintTimeoutRef.current = null
+			}, 5000)
+		}
+
+		// If the section is already visible on mount, show the hint immediately
+		const rect = observerTarget.getBoundingClientRect()
+		const alreadyVisible = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0
+		if (alreadyVisible) {
+			showHint()
+			return
+		}
+
+		// Otherwise observe and trigger when it comes into view
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					showHint()
+					observer.disconnect()
+				}
+			})
+		}, { threshold: 0.2 })
+
+		observer.observe(observerTarget)
+
+		return () => {
+			observer.disconnect()
+			if (hintTimeoutRef.current) {
+				clearTimeout(hintTimeoutRef.current)
+				hintTimeoutRef.current = null
+			}
+		}
+	}, [])
+
+	useEffect(() => {
+		// Keep the video element's muted property in sync with state
+		if (videoRef.current) {
+			videoRef.current.muted = isMuted
+		}
+	}, [isMuted])
 
 	// Auto hover animation effect
 	useEffect(() => {
@@ -193,16 +253,56 @@ const AboutUs = () => {
 								{/* Borde decorativo animado en azul */}
 								<div className="absolute -inset-1 bg-blue-600 dark:bg-blue-500 rounded-3xl blur opacity-50 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
 								
-								{/* Video */}
-								<div className="relative h-[568px] rounded-2xl overflow-hidden shadow-2xl bg-gray-900 ring-1 ring-gray-900/5">
-									<video className="w-full h-full object-cover" autoPlay loop muted playsInline>
-										<source
-											src="https://lafysstpyiejevhrlmzc.supabase.co/storage/v1/object/public/videos//Abouts_Us_Video.mp4"
-											type="video/mp4"
-										/>
-										Tu navegador no soporta el elemento de video.
-									</video>
-								</div>
+									{/* Video */}
+									<div className="relative h-[568px] rounded-2xl overflow-hidden shadow-2xl bg-gray-900 ring-1 ring-gray-900/5">
+										{/* Mute/Unmute button */}
+										<button
+											type="button"
+											aria-pressed={!isMuted}
+											aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
+											onClick={() => {
+												// toggle mute
+												setIsMuted(prev => !prev)
+												// hide hint and mark that user clicked mute this session
+												setShowSoundHint(false)
+												hasClickedMuteThisLoad.current = true
+												if (hintTimeoutRef.current) {
+													clearTimeout(hintTimeoutRef.current)
+													hintTimeoutRef.current = null
+												}
+											}}
+											className="absolute z-20 bottom-3 right-3 bg-black/40 hover:bg-black/50 text-white rounded-full p-2 flex items-center justify-center focus:outline-none transition"
+										>
+											{isMuted ? (
+												<VolumeX className="h-4 w-4" />
+											) : (
+												<Volume2 className="h-4 w-4" />
+											)}
+										</button>
+
+									{/* One-time hint bubble */}
+									{showSoundHint && (
+										<div className="absolute z-30 bottom-14 right-3 max-w-xs bg-black/75 text-white text-sm rounded-lg px-3 py-2 shadow-lg animate-fade-in">
+											<strong className="block">Puedes activar el sonido</strong>
+											<p className="text-xs mt-1">Pulsa el icono para escuchar el audio del video.</p>
+										</div>
+									)}
+
+										<video
+											ref={videoRef}
+											muted={isMuted}
+											className="w-full h-full object-cover"
+											autoPlay
+											loop
+											playsInline
+										>
+											<source
+												src="https://lafysstpyiejevhrlmzc.supabase.co/storage/v1/object/public/videos/SolHoub/Conspat%20x%20Solware%20(1)%20(1).mp4"
+												type="video/mp4"
+											/>
+											Tu navegador no soporta el elemento de video.
+										</video>
+									</div>
 							</div>
 						</div>
 					</div>

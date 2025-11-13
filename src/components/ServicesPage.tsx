@@ -362,7 +362,7 @@ const ServicesPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden w-full">
+    <div className="min-h-screen bg-white dark:bg-gray-900 will-change-auto w-full">
       {/* Background particles */}
       <Particles />
       
@@ -376,35 +376,35 @@ const ServicesPage: React.FC = () => {
             // Initial Slide - Soluciones Digitales Integrales
             <motion.section
               key="initial-slide"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-indigo-900 flex items-center justify-center py-16 md:py-24 lg:py-28 xl:py-24 2xl:py-32 w-full overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-indigo-900 flex items-center justify-center py-16 md:py-24 lg:py-28 xl:py-24 2xl:py-32 w-full overflow-hidden will-change-auto"
             >
               <div className="max-w-4xl xl:max-w-4xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 text-center w-full flex flex-col justify-center min-h-[calc(100vh-4rem)] md:min-h-0">
                 <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
                   className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 md:mb-6 lg:mb-6 xl:mb-8 2xl:mb-10"
                 >
                   {t('services.title')}
                 </motion.h1>
                 
                 <motion.p
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                   className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-4xl text-gray-600 dark:text-gray-300 mb-12 sm:mb-16 md:mb-8 lg:mb-8 xl:mb-10 2xl:mb-12 leading-relaxed px-2"
                 >
                   {t('services.shortDescription')}
                 </motion.p>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
                   className="flex flex-col items-center space-y-6 sm:space-y-8 md:space-y-5 lg:space-y-6 2xl:space-y-8"
                 >
                   {/* Indicativo desktop */}
@@ -430,50 +430,34 @@ const ServicesPage: React.FC = () => {
             // Service Content
             <motion.section
               key={`service-${currentServiceIndex}`}
-              initial={{ 
-                opacity: 0, 
-                scale: 0.9,
-                rotateY: -15
-              }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                rotateY: 0
-              }}
-              exit={{ 
-                opacity: 0, 
-                scale: 1.1,
-                rotateY: 15
-              }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.43, 0.13, 0.23, 0.96]
-              }}
-              className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 py-16 md:py-24 lg:py-28 xl:py-24 2xl:py-28 md:pt-24 md:pb-4 w-full overflow-hidden"
-              style={{ perspective: 1000 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="min-h-screen bg-white dark:bg-gray-900 will-change-auto py-16 md:py-24 lg:py-28 xl:py-24 2xl:py-28 md:pt-24 md:pb-4 w-full overflow-hidden"
             >
               <div className="max-w-7xl xl:max-w-7xl 2xl:max-w-[100rem] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 md:min-h-screen flex flex-col justify-start md:justify-center md:pt-0 w-full">
                 {/* Service Header - Solo cambia cuando cambia de servicio */}
                 <motion.div 
                   className="text-center mb-6 sm:mb-8 md:mb-6 lg:mb-6 xl:mb-8 2xl:mb-10"
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <motion.h2 
                     className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-5 md:mb-4 lg:mb-4 xl:mb-5 2xl:mb-6"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
                   >
                     {services[currentServiceIndex].title}
                   </motion.h2>
                   
                   <motion.p 
                     className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-4xl text-gray-600 dark:text-gray-300 max-w-2xl lg:max-w-3xl xl:max-w-3xl 2xl:max-w-5xl mx-auto px-2"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
                   >
                     {services[currentServiceIndex].subtitle}
                   </motion.p>
@@ -483,44 +467,11 @@ const ServicesPage: React.FC = () => {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`point-${currentPointIndex}`}
-                    initial={isServiceChange ? { 
-                      // Animación espectacular para cambio de servicio
-                      opacity: 0, 
-                      scale: 0.8,
-                      rotateX: 45,
-                      y: 100
-                    } : { 
-                      // Animación suave para cambio de punto
-                      opacity: 0, 
-                      y: 30
-                    }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      rotateX: 0,
-                      y: 0
-                    }}
-                    exit={isServiceChange ? { 
-                      // Salida espectacular para cambio de servicio
-                      opacity: 0, 
-                      scale: 1.2,
-                      rotateX: -45,
-                      y: -100
-                    } : { 
-                      // Salida suave para cambio de punto
-                      opacity: 0, 
-                      y: -30
-                    }}
-                    transition={isServiceChange ? { 
-                      // Transición más larga y dramática para cambio de servicio
-                      duration: 0.8, 
-                      ease: [0.68, -0.55, 0.265, 1.55]
-                    } : { 
-                      // Transición rápida y suave para cambio de punto
-                      duration: 0.4, 
-                      ease: "easeInOut" 
-                    }}
-                    className={`flex flex-col gap-6 sm:gap-8 md:gap-6 lg:gap-6 xl:gap-8 2xl:gap-12 flex-1 mt-0 md:-mt-4 lg:-mt-4 xl:-mt-6 2xl:-mt-8 px-0 sm:px-0 lg:px-0 xl:px-0 lg:items-center w-full ${
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className={`flex flex-col gap-6 sm:gap-8 md:gap-6 lg:gap-6 xl:gap-8 2xl:gap-12 flex-1 mt-0 md:-mt-4 lg:-mt-4 xl:-mt-6 2xl:-mt-8 px-0 sm:px-0 lg:px-0 xl:px-0 lg:items-center w-full will-change-auto ${
                       // En mobile alternar imagen arriba/abajo, en desktop alternar izquierda/derecha
                       (currentServiceIndex + currentPointIndex) % 2 === 0 
                         ? 'lg:flex-row' 
@@ -528,12 +479,12 @@ const ServicesPage: React.FC = () => {
                     }`}
                   >
                     {/* Image - Mobile: arriba alternando, Desktop: lado alternando */}
-                    <div className={`w-full max-w-lg md:max-w-xl lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0 lg:flex-1 ${
+                    <div className={`w-full max-w-lg md:max-w-xl lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0 lg:flex-1 will-change-auto ${
                       (currentServiceIndex + currentPointIndex) % 2 === 0 
                         ? 'order-first' 
                         : 'order-last lg:order-first'
                     }`}>
-                      <div className="relative overflow-hidden rounded-xl md:rounded-2xl lg:rounded-2xl xl:rounded-3xl shadow-lg ring-4 md:ring-4 lg:ring-5 ring-blue-500/50 dark:ring-blue-400/50 h-56 sm:h-64 md:h-64 lg:h-64 xl:h-80 2xl:h-[28rem]">
+                      <div className="relative overflow-hidden rounded-xl md:rounded-2xl lg:rounded-2xl xl:rounded-3xl shadow-lg ring-4 md:ring-4 lg:ring-5 ring-blue-500/50 dark:ring-blue-400/50 h-56 sm:h-64 md:h-64 lg:h-64 xl:h-80 2xl:h-[28rem] will-change-auto">
                         <img
                           src={getGenericImage(services[currentServiceIndex].id, currentPointIndex)}
                           alt={services[currentServiceIndex].points[currentPointIndex].title}
@@ -545,7 +496,7 @@ const ServicesPage: React.FC = () => {
                     </div>
 
                     {/* Content */}
-                    <div className={`w-full max-w-lg md:max-w-xl lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0 lg:flex-1 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 2xl:space-y-8 lg:flex lg:flex-col lg:justify-center ${
+                    <div className={`w-full max-w-lg md:max-w-xl lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0 lg:flex-1 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 2xl:space-y-8 lg:flex lg:flex-col lg:justify-center will-change-auto ${
                       (currentServiceIndex + currentPointIndex) % 2 === 0 
                         ? 'order-last' 
                         : 'order-first lg:order-last'

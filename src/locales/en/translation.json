@@ -9,7 +9,7 @@
       "masVendidos": "Best Sellers",
       "contacto": "Contact"
     },
-    "consulta": "Schedule your appointment",
+    "consulta": "Free Consultation",
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode",
     "language": {
@@ -58,12 +58,12 @@
     "sectionTitle": "Awards",
     "title": "IESA Hackathon",
     "institution": "Institute of Higher Studies in Administration",
-    "description": "Recognized for our innovation in automation and business technology solutions, standing out among the best development teams in the country.",
+    "description": "Recognized for our innovation in digital health, elevating the quality and efficiency of clinics and laboratories in Venezuela.",
     "position": "1st",
     "positionLabel": "Place",
     "year": "2025",
     "yearLabel": "Year",
-    "quote": "Innovation is not just what we do, it's who we are"
+    "quote": "Less paperwork, more precision, connected health. That's Solware."
   },
   "workProcess": {
     "title": "The path to achieving your professional goals",
