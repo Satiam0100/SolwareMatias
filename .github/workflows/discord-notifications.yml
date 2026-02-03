@@ -1,10 +1,10 @@
-name: Reusable Discord Notifier
+name: Discord Notifications
 
 on:
-  workflow_call:
-    secrets:
-      DISCORD_WEBHOOK_URL:
-        required: true
+  push:
+    branches: [ main, master ]
+  pull_request:
+    types: [opened, closed, reopened]
 
 jobs:
   notify:
@@ -13,14 +13,13 @@ jobs:
       - name: Discord Notification
         uses: sarisia/actions-status-discord@v1
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          # El 'status' lo tomamos del workflow que nos llama
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
-          title: "📢 Cambio en: ${{ github.repository }}"
+          title: "📢 Nueva actividad en el Repo"
           description: |
             **Evento:** `${{ github.event_name }}`
             **Autor:** `${{ github.actor }}`
             **Mensaje:** ${{ github.event.head_commit.message || github.event.pull_request.title }}
           url: ${{ github.event.html_url || github.event.pull_request.html_url }}
-          color: 0x5865F2
-          username: GitHub Central Bot
+          color: 0x5865F2 # Color Blurple original de Discord
+          username: GitHub Bot
