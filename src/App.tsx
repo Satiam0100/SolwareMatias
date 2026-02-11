@@ -106,7 +106,6 @@ function App() {
 						buttonLink="#servicios"
 					/>
 					<Services />
-					<Automation />
 					<CTA
 						variant="secondary"
 						titleKey="cta2.title"

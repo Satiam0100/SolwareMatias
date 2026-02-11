@@ -21,7 +21,6 @@ export default function Header() {
 			label: t('header.navItems.soluciones'),
 			items: [
 				{ href: '/services', label: t('header.navItems.servicios'), isRoute: true },
-				{ href: '#automatizacion', label: t('header.navItems.automatizacion') },
 				{ href: '#pricing', label: t('header.navItems.masVendidos') },
 			],
 		},

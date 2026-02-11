@@ -5,7 +5,6 @@
       "workflow": "Workflow",
       "servicios": "Solutions",
       "soluciones": "Services",
-      "automatizacion": "Automation",
       "masVendidos": "Best Sellers",
       "contacto": "Test"
     },
@@ -254,34 +253,6 @@
           "description": "Data consolidation from multiple sources for comprehensive analysis."
         }
       }
-    }
-  },
-  "automation": {
-    "title": "Business Automation",
-    "description": "We transform manual processes into efficient, automated workflows",
-    "automatizacion": {
-      "title": "Process Automation",
-      "description": "We optimize repetitive workflows to boost operational efficiency"
-    },
-    "analisis": {
-      "title": "Data Analysis",
-      "description": "We turn data into actionable insights for better decision-making"
-    },
-    "gestion": {
-      "title": "Document Management",
-      "description": "Digitization and automation of document-related processes"
-    },
-    "tareas": {
-      "title": "Task Scheduling",
-      "description": "Automation of scheduled tasks with real-time tracking"
-    },
-    "integracion": {
-      "title": "System Integration",
-      "description": "We connect your existing systems for seamless data flow"
-    },
-    "asistentes": {
-      "title": "Virtual Assistants",
-      "description": "Implementation of chatbots and automated assistants"
     }
   },
   "cta1": {
